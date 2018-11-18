@@ -1,0 +1,15 @@
+spring:
+   profiles:
+      active: native
+   application:
+      name: configuration
+   security:
+      user:
+         password: test
+   cloud:
+      config:
+         server:
+             native:
+                searchLocations: classpath:config/
+encrypt:
+   key: 5B1071D9-5C44-4FB5-A1AC-38B92BF72717
