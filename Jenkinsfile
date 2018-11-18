@@ -34,6 +34,7 @@ pipeline {
                 withMaven {
 		            sh '/usr/local/bin/mvn --batch-mode release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion=$MAVEN_VERSION_NUMBER'
 		            sh '/usr/local/bin/mvn -s settings.xml deploy' 
+		            sh '/usr/local/bin/mvn clean heroku:deploy-war -Dheroku.appName=bst-configuration'
 		        }
             }
         }
