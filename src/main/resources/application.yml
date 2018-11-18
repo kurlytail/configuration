@@ -9,6 +9,7 @@ logging:
             web: DEBUG
             cloud:
                config: DEBUG
+            security: DEBUG
               
 spring:
    profiles:
