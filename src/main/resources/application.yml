@@ -1,0 +1,22 @@
+server:
+   port: 10000
+logging:
+   level:
+      org:
+         apache:
+            http: DEBUG
+         springframework:
+            web: DEBUG
+            cloud:
+               config: DEBUG
+spring:
+   profiles:
+      active: native
+   application:
+      name: configuration
+   cloud:
+      config:
+         server:
+             native:
+                searchLocations: classpath:config/
+                
