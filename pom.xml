@@ -195,5 +195,5 @@
 		<name>Brainspeed Technologies</name>
 		<url>www.brainspeedtech.com</url>
 	</organization>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 </project>
