@@ -36,13 +36,14 @@ pipeline {
 		            sh '/usr/local/bin/mvn -s settings.xml deploy'
 		            sh '/usr/local/bin/mvn docker:build'
 		        }
-		        try {
-		            sh "docker stop container"
-		            sh "docker rm container"
-		        }
-		        
-		        catch(msg) {
-		            echo "Ignoring error $msg"
+		        script {
+			        try {
+			            sh "docker stop container"
+			            sh "docker rm container"
+			        }
+			        catch(msg) {
+			            echo "Ignoring error $msg"
+			        }
 		        }
 
 		        sh '''docker run -d --dns $(docker inspect -f '{{.NetworkSettings.IPAddress}}' dns) --dns-search brainspeedtech.com --name configuration brainspeedtech/configuration:''' + env['MAVEN_VERSION_NUMBER']
