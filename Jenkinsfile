@@ -34,7 +34,7 @@ pipeline {
                 withMaven {
 		            sh '/usr/local/bin/mvn --batch-mode -s settings.xml release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion=$MAVEN_VERSION_NUMBER'
 		            sh '/usr/local/bin/mvn --batch-mode -s settings.xml deploy'
-		            sh '/usr/local/bin/mvn --batch-mode -s settings.xml docker:build'
+		            sh '/usr/local/bin/mvn --batch-mode -s settings.xml dockerfile:build'
 		        }
 		        script {
 			        try {
