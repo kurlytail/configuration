@@ -39,8 +39,8 @@ pipeline {
 		        }
 		        script {
 			        try {
-			            sh "docker stop container"
-			            sh "docker rm container"
+			            sh "docker stop configuration"
+			            sh "docker rm configuration"
 			        }
 			        catch(msg) {
 			            echo "Ignoring error $msg"
