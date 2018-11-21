@@ -47,7 +47,7 @@ pipeline {
 			        }
 		        }
 
-		        sh '''docker run -d --dns \$(docker inspect -f \'{{.NetworkSettings.IPAddress}}\' dns) --dns-search brainspeedtech.com --name configuration brainspeedtech/configuration:\$MAVEN_VERSION_NUMBER'''
+		        sh '''docker run -d -p 10000:80 --dns \$(docker inspect -f \'{{.NetworkSettings.IPAddress}}\' dns) --dns-search brainspeedtech.com --name configuration brainspeedtech/configuration:\$MAVEN_VERSION_NUMBER'''
             }
         }
     }
