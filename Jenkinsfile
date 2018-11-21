@@ -17,6 +17,7 @@ pipeline {
                 script {
                     loadLibrary()
                     env['MAVEN_VERSION_NUMBER'] = getMavenVersion 'kurlytail/configuration/master', params.BUILD_VERSION_PREFIX, params.BUILDS_OFFSET
+                	evn.PATH = env.PATH + ':/usr/local/bin'
                 	currentBuild.displayName = env['MAVEN_VERSION_NUMBER']
                 }
             }
@@ -32,9 +33,9 @@ pipeline {
      
                 checkout scm
                 withMaven {
-		            sh '/usr/local/bin/mvn --batch-mode -s settings.xml release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion=$MAVEN_VERSION_NUMBER'
-		            sh '/usr/local/bin/mvn --batch-mode -s settings.xml deploy'
-		            sh '/usr/local/bin/mvn --batch-mode -s settings.xml dockerfile:build'
+		            sh 'mvn --batch-mode -s settings.xml release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion=$MAVEN_VERSION_NUMBER'
+		            sh 'mvn --batch-mode -s settings.xml deploy'
+		            sh 'mvn --batch-mode -s settings.xml dockerfile:build'
 		        }
 		        script {
 			        try {
