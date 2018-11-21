@@ -11,3 +11,7 @@ logging:
                config: DEBUG
             security: DEBUG
 
+eureka:
+   client:
+      serviceUrl:
+         defaultZone: http://discovery.brainspeedtech.com/eureka
