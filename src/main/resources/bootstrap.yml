@@ -1,6 +1,6 @@
 spring:
    profiles:
-      active: native,git
+      active: git
    application:
       name: configuration
    security:
@@ -9,8 +9,6 @@ spring:
    cloud:
       config:
          server:
-             native:
-                searchLocations: classpath:config/
              git:
                 uri: https://github.com/kurlytail/deploy-configuration
                 username: kurlytail
