@@ -37,16 +37,9 @@ pipeline {
 		            sh 'mvn --batch-mode -s settings.xml deploy'
 		            sh 'mvn --batch-mode -s settings.xml dockerfile:build'
 		        }
-		        script {
-			        try {
-			            sh "docker stop configuration"
-			            sh "docker rm configuration"
-			        }
-			        catch(msg) {
-			            echo "Ignoring error $msg"
-			        }
-		        }
-
+		        
+	            sh "docker stop configuration || true"
+	            sh "docker rm configuration || true"
 		        sh '''docker run --restart unless-stopped --live-restore -d -p 10000:80 --dns \$(docker inspect -f \'{{.NetworkSettings.IPAddress}}\' dns) --dns-search brainspeedtech.com --name configuration brainspeedtech/configuration:\$MAVEN_VERSION_NUMBER'''
             }
         }
