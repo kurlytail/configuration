@@ -41,6 +41,8 @@ pipeline {
 	            sh "docker stop configuration || true"
 	            sh "docker rm configuration || true"
 		        sh '''docker run --restart unless-stopped -d -p 10000:80 --dns \$(docker inspect -f \'{{.NetworkSettings.IPAddress}}\' dns) --dns-search brainspeedtech.com --name configuration --hostname configuration.brainspeedtech.com brainspeedtech/configuration:\$MAVEN_VERSION_NUMBER'''
+		        sh 'cp nginx.conf /usr/local/etc/nginx/servers/configuration.conf'
+		        sh 'brew services restart nginx'
             }
         }
     }
